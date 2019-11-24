@@ -157,3 +157,8 @@ INSANE_SKIP_${PN}-dbg += "dev-so"
 # ----------------------------------------------------------------------------
 
 RDEPENDS_${PN}_rpi = "userland"
+
+do_compile_prepend() {
+
+    sed -i 's|#include <string>|#include <string>\n#include <cstring>|g' ${S}/Source/compositorclient/Client.h
+}

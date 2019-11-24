@@ -8,9 +8,11 @@ Subject: [PATCH 2/3] Small robustness fixes
  libs/gst/base/gstadapter.c | 5 ++++-
  2 files changed, 5 insertions(+), 1 deletion(-)
 
+diff --git a/gst/gststructure.c b/gst/gststructure.c
+index 8596c2b..60339b6 100644
 --- a/gst/gststructure.c
 +++ b/gst/gststructure.c
-@@ -375,6 +375,7 @@ gst_structure_free (GstStructure * struc
+@@ -375,6 +375,7 @@ gst_structure_free (GstStructure * structure)
    guint i, len;
  
    g_return_if_fail (structure != NULL);
@@ -18,9 +20,11 @@ Subject: [PATCH 2/3] Small robustness fixes
    g_return_if_fail (GST_STRUCTURE_REFCOUNT (structure) == NULL);
  
    len = GST_STRUCTURE_FIELDS (structure)->len;
+diff --git a/libs/gst/base/gstadapter.c b/libs/gst/base/gstadapter.c
+index e3dff28..fbdfb89 100644
 --- a/libs/gst/base/gstadapter.c
 +++ b/libs/gst/base/gstadapter.c
-@@ -227,7 +227,10 @@ gst_adapter_finalize (GObject * object)
+@@ -225,7 +225,10 @@ gst_adapter_finalize (GObject * object)
  {
    GstAdapter *adapter = GST_ADAPTER (object);
  
@@ -30,5 +34,8 @@ Subject: [PATCH 2/3] Small robustness fixes
 +    adapter->assembled_size = NULL;
 +  }
  
-   gst_queue_array_free (adapter->bufqueue);
- 
+   GST_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
+ }
+-- 
+1.8.3.2
+

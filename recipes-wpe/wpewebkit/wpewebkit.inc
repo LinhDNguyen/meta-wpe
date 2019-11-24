@@ -124,8 +124,8 @@ RDEPS_MEDIASOURCE = " \
 RDEPS_VIDEO = " \
     gstreamer1.0-plugins-base-app \
     gstreamer1.0-plugins-base-playback \
-    gstreamer1.0-plugins-good-souphttpsrc \
 "
+#gstreamer1.0-plugins-good-souphttpsrc
 
 RDEPS_WEBAUDIO = " \
     gstreamer1.0-plugins-good-wavparse \
@@ -150,7 +150,6 @@ RDEPS_EXTRA = " \
     gstreamer1.0-plugins-good-deinterlace \
     gstreamer1.0-plugins-good-interleave \
     gstreamer1.0-plugins-good-matroska \
-    gstreamer1.0-plugins-good-mpg123 \
     gstreamer1.0-plugins-bad-dashdemux \
     gstreamer1.0-plugins-bad-hls \
     gstreamer1.0-plugins-bad-mpegtsdemux \
@@ -158,13 +157,14 @@ RDEPS_EXTRA = " \
     gstreamer1.0-plugins-bad-smoothstreaming \
     gstreamer1.0-plugins-bad-videoparsersbad \
 "
+# gstreamer1.0-plugins-good-mpg123
 
 RDEPS_EXTRA_append_rpi = " \
     ${@bb.utils.contains('MACHINE_FEATURES', 'vc4graphics', 'gstreamer1.0-plugins-good-video4linux2 ', '', d)} \
     gstreamer1.0-omx \
     gstreamer1.0-plugins-bad-faad \
-    gstreamer1.0-plugins-base-opengl \
 "
+#    gstreamer1.0-plugins-base-opengl
 
 # The RDEPS_EXTRA plugins are all required for certain media playback use cases,
 # but have not yet been classified as being specific dependencies for video,
